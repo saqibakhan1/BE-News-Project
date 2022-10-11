@@ -1,7 +1,7 @@
-const db = require("../db/connection") // importing connection.js file
-const seed = require("../db/seeds/seed") // importing seed file
-const testData = require("../db/data/test-data/index") // importing all test data
-const request = require("supertest") // supertest
+const db = require("../db/connection")
+const seed = require("../db/seeds/seed")
+const testData = require("../db/data/test-data/index")
+const request = require("supertest")
 const app = require("../app")
 
 beforeEach(() => seed(testData))
@@ -38,3 +38,26 @@ describe("GET /api/topics", () => {
           });
       });
     });
+
+describe("GET /api/articles/:article_id", () => {
+  test("status 200, when given a valid ID, returns relevant article", () => {
+    return request(app)
+      .get(`/api/articles/3`)
+      .expect(200)
+      .then((res) => {
+        expect(res.body.article).toEqual(
+          expect.objectContaining({
+
+            author: expect.any(String),
+            title: expect.any(String),
+            article_id: 3,
+            body: expect.any(String), 
+            topic: "mitch",
+            created_at: expect.any(String),
+            votes: expect.any(Number)
+
+          })
+        );
+      });
+  });
+})    
