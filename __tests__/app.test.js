@@ -76,4 +76,27 @@ describe("GET /api/articles/:article_id", () => {
       expect(res.body).toEqual({msg: "Article number is not valid :("})
     })
 })
+
 })
+describe("GET /api/users", () => {
+  test("status 200, responds with a list of users", () => {
+    return request(app)
+      .get("/api/users")
+      .expect(200)
+      .then((res) => {
+        expect(res.body.users).toHaveLength(4);
+           res.body.users.forEach((user) => {
+            expect(user).toEqual(
+            expect.objectContaining({
+              username: expect.any(String),
+              name: expect.any(String),
+              avatar_url: expect.any(String),
+            })
+          );
+        });
+      });
+  });
+});
+
+})
+

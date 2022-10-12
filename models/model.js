@@ -17,3 +17,12 @@ exports.selectArticleById = (id) => {
         return result.rows[0]
       })
   }
+
+exports.selectUsers = () => {
+    return db
+    .query('SELECT * FROM users')
+    .then((results) => {
+        return results.rows
+    })
+}
+

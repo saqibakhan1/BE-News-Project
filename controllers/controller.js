@@ -1,6 +1,8 @@
 const { 
   selectTopics,
-  selectArticleById
+  selectArticleById,
+  selectUsers
+
   } = require("../models/model")
 
 
@@ -20,4 +22,14 @@ exports.getArticleById = (req, res, next) => {
       .catch((err) => {
         next(err);
       });
+
+};
+exports.getUsers = (req, res) => {
+    selectUsers()
+    .then((users) => {
+        res.status(200).send({users})
+    })
+}
+
   };
+
