@@ -76,6 +76,7 @@ describe("GET /api/articles/:article_id", () => {
       expect(res.body).toEqual({msg: "Article number is not valid :("})
     })
 })
+
 })
 describe("GET /api/users", () => {
   test("status 200, responds with a list of users", () => {
@@ -96,3 +97,6 @@ describe("GET /api/users", () => {
       });
   });
 });
+
+})
+

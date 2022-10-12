@@ -17,6 +17,7 @@ exports.selectArticleById = (id) => {
         return result.rows[0]
       })
   }
+
 exports.selectUsers = () => {
     return db
     .query('SELECT * FROM users')
@@ -24,3 +25,4 @@ exports.selectUsers = () => {
         return results.rows
     })
 }
+
