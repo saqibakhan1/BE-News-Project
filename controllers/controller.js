@@ -31,5 +31,5 @@ exports.getUsers = (req, res) => {
     })
 }
 
-  };
+
 
