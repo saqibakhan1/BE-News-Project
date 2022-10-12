@@ -60,4 +60,20 @@ describe("GET /api/articles/:article_id", () => {
         );
       });
   });
-})    
+  test("status 404, responds with a message if article ID does not exist", () => {
+    return request(app)
+    .get("/api/articles/999")
+    .expect(404)
+    .then((res) => {
+      expect(res.body).toEqual({msg: "Article number does not exist :("})
+    })
+  })
+  test("status 400, responds with a message if article ID is not valid", () => {
+    return request(app)
+    .get("/api/articles/1a")
+    .expect(400)
+    .then((res) => {
+      expect(res.body).toEqual({msg: "Article number is not valid :("})
+    })
+})
+})
