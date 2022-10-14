@@ -1,7 +1,8 @@
 const { 
   selectTopics,
   selectArticleById,
-  selectUsers
+  selectUsers,
+  updateArticleById
 
   } = require("../models/model")
 
@@ -30,6 +31,13 @@ exports.getUsers = (req, res) => {
         res.status(200).send({users})
     })
 }
+///////////////////////////////////
 
+exports.patchArticleById = (req, res, next) => {
+   const articleId = req.params.article_id;
+   const changeAmount = req.body.inc_votes;
 
-
+    return updateArticleById(articleId, changeAmount).then((result) => {
+    return res.status(201).send({ result });
+   });
+}
