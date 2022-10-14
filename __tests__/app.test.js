@@ -98,4 +98,25 @@ describe("GET /api/users", () => {
   });
 });
 
+///////////////////////////////////////////////////////////
 
+describe("PATCH /api/articles/:article_id", () => {
+  test("status 201, responds with an updated votes object", () => {
+    return request(app)
+    .patch("/api/articles/1")
+    .send({ inc_votes: -100})
+    .expect(201)
+    .then((res) => {
+      console.log(res.body.result.votes)
+      expect(res.body.result.votes).toEqual(0)
+    })
+  })
+  test("status 400, responds with a message if vote number is not valid", () => {
+    return request(app)
+    .get("/api/articles/1a")
+    .expect(400)
+    .then((res) => {
+      expect(res.body).toEqual({msg: "Article number is not valid :("})
+    })
+})
+})

@@ -1,15 +1,17 @@
 const express = require("express")
-const { getTopics, getArticleById, getUsers } = require("./controllers/controller")
+const { getTopics, getArticleById, getUsers, patchArticleById } = require("./controllers/controller")
 
 
 const app = express()
-
+app.use(express.json());
 
 
 app.get("/api/topics", getTopics)
 app.get("/api/articles/:article_id", getArticleById)
 
 app.get('/api/users', getUsers)
+
+app.patch('/api/articles/:article_id', patchArticleById)
 
 app.all('/*', (req, res) => {
     res.status(404).send({ msg: "invalid URL- path not found" });

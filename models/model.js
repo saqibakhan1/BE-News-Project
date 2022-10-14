@@ -26,3 +26,17 @@ exports.selectUsers = () => {
     })
 }
 
+////////////////////////////////////////////
+
+
+exports.updateArticleById = (articleId, changeVotes) => {
+  return db
+    .query(
+      `UPDATE articles SET votes = votes 
+    + $2 WHERE article_id = $1 RETURNING *;`,
+      [articleId, changeVotes]
+    )
+    .then(({ rows }) => {
+      return rows[0];
+    });
+};
