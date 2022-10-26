@@ -3,7 +3,7 @@ const { getTopics, getArticleById, getUsers } = require("./controllers/controlle
 
 
 const app = express()
-
+console.log("test change")
 
 
 app.get("/api/topics", getTopics)
