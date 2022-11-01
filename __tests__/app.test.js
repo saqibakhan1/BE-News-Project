@@ -39,23 +39,24 @@ describe("GET /api/topics", () => {
       });
     });
 
+
+    
 describe("GET /api/articles/:article_id", () => {
-  test("status 200, when given a valid ID, returns relevant article", () => {
+  test('GET - when given a valid ID, will return status 200 along with respective article. ', () => {
     return request(app)
-      .get(`/api/articles/3`)
+      .get(`/api/articles/2`)
       .expect(200)
       .then((res) => {
         expect(res.body.article).toEqual(
           expect.objectContaining({
-
-            author: expect.any(String),
+            article_id: 2,
             title: expect.any(String),
-            article_id: 3,
-            body: expect.any(String), 
-            topic: "mitch",
+            author: expect.any(String),
+            body: expect.any(String),
+            topic: expect.any(String),
             created_at: expect.any(String),
-            votes: expect.any(Number)
-
+            votes: expect.any(Number),
+            comment_count: expect.any(Number)
           })
         );
       });

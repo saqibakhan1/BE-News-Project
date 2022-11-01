@@ -1,15 +1,17 @@
 const express = require("express")
-const { getTopics, getArticleById, getUsers } = require("./controllers/controller")
+const { getTopics, getArticleById, getUsers, getArticles, getArticleComments, postCommentsByArticleId } = require("./controllers/controller")
 
+app.use(cors());
 
 const app = express()
-console.log("test change")
-
+app.use(express.json());
 
 app.get("/api/topics", getTopics)
 app.get("/api/articles/:article_id", getArticleById)
-
 app.get('/api/users', getUsers)
+app.get('/api/articles', getArticles)
+app.get("/api/articles/:article_id/comments", getArticleComments)
+app.post('/api/articles/:article_id/comments', postCommentsByArticleId)
 
 app.all('/*', (req, res) => {
     res.status(404).send({ msg: "invalid URL- path not found" });
