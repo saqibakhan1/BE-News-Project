@@ -47,6 +47,7 @@ describe("GET /api/articles/:article_id", () => {
       .get(`/api/articles/2`)
       .expect(200)
       .then((res) => {
+        console.log(res.body.article)
         expect(res.body.article).toEqual(
           expect.objectContaining({
             article_id: 2,
@@ -56,7 +57,7 @@ describe("GET /api/articles/:article_id", () => {
             topic: expect.any(String),
             created_at: expect.any(String),
             votes: expect.any(Number),
-            comment_count: expect.any(Number)
+            comment_count: expect.any(String)
           })
         );
       });
